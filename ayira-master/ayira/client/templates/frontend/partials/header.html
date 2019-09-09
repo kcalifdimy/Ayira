@@ -1,0 +1,61 @@
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% if slides.count == 1 %}
+{% image slides.first.image original as image %}
+<div style="position: relative;">
+<div class="g-fullheight--xs g-bg-position--center" 
+  style="background: url('{{ image.url }}');">
+    <div class="container g-text-center--xs g-ver-center--xs">
+      <div class="g-margin-b-30--xs g-text-left--xs">
+        <h1 class="g-font-size-35--xs g-font-size-45--sm g-font-size-55--md 
+                      g-color--light-gray">
+          <span class="text-uppercase" 
+          style="font-family:'Advent Pro'"> {{ slides.first.caption }} <br> </span>
+          <span style="font-family:'Advent Pro'; font-weight:bold"> 
+            {{ slides.first.sub_caption }}
+          </span>
+        </h1>
+      </div>
+      <a class="js__popup__youtube" href="#" title="Intro Video">
+        <i class="s-icon s-icon--lg s-icon--white-bg g-radius--circle ti-control-play">
+        </i>
+      </a>
+    </div>
+</div>
+</div>
+{% else %}
+<div class="s-swiper js__swiper-one-item">
+  <!-- Swiper Wrapper -->
+  <div class="swiper-wrapper">
+    {% for slide in slides %}
+    {% image slide.image original as image %}
+    <div class="g-fullheight--xs g-bg-position--center swiper-slide"
+     style="background: url('{{ image.url }}');">
+      <div class="container g-text-center--xs g-ver-center--xs">
+        <div class="g-margin-b-30--xs g-text-left--xs">
+          <h1 class="g-font-size-35--xs g-font-size-45--sm g-font-size-55--md 
+                        g-color--light-gray">
+            <span class="text-uppercase" 
+            style="font-family:'Advent Pro'"> {{ slide.caption }} <br> </span>
+            <span style="font-family:'Advent Pro'; font-weight:bold"> {{ slide.sub_caption }}</span>
+          </h1>
+        </div>
+        <a class="js__popup__youtube" href="#" title="Intro Video">
+          <i class="s-icon s-icon--lg s-icon--white-bg g-radius--circle ti-control-play">
+          </i>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <!-- End Swiper Wrapper -->
+
+  <a href="#js__scroll-to-section" class="s-scroll-to-section-v1--bc g-margin-b-15--xs">
+    <span class="g-font-size-18--xs g-color--gray ti-angle-double-down"></span>
+    <p class="text-uppercase g-color--gray g-letter-spacing--3 g-margin-b-0--xs">
+      Learn More
+    </p>
+  </a>
+</div>

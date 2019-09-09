@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=ayira
+POSTGRES_USER=QJEPULcSSHfNjWJogVVyhiywPFbBOQiU
+POSTGRES_PASSWORD=M4fnxudJoR2mLTbGV545loSE6CxPTohqZMwHYvH9Crn8puW4FLb3QKZHIbY59FNd

@@ -1,0 +1,30 @@
+{% extends "wagtailadmin/home.html" %}
+
+{% load wagtailadmin_tags staticfiles i18n %}
+{% block titletag %}{% trans "Dashboard" %}{% endblock %}
+{% block bodyclass %}homepage{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+
+    <link rel="stylesheet" href="{% static 'wagtailadmin/css/layouts/home.css' %}" type="text/css" />
+{% endblock %}
+
+{% block content %}
+    <header class="merged">
+        <div class="row row-flush">
+            <div class="col12">
+                <h2 style="text-align:center;text-transform:uppercase;">{% block branding_welcome %}
+                  {% blocktrans %}Welcome to {{ site_name }} CMS{% endblocktrans %}{% endblock %}</h2>
+            </div>
+        </div>
+    </header>
+
+    {% if panels %}
+        {% for panel in panels %}
+            {{ panel.render }}
+        {% endfor %}
+    {% else %}
+        <p>{% trans "This is your dashboard on which helpful information about content you've created will be displayed." %}</p>
+    {% endif %}
+{% endblock %}

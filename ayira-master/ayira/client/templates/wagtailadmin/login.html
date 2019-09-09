@@ -1,0 +1,18 @@
+{% extends "wagtailadmin/login.html" %}
+{% load static wagtailimages_tags %}
+
+
+{% block branding_login %}
+<style>
+        .content-wrapper, body, html {
+            background-color: #eee;
+            color: #d9d9d9;
+        }
+</style>
+{% image settings.core.SiteBranding.logo original as logo %}
+          <img class="g-width-100--xs g-height-auto--xs" src="{{ logo.url }}" 
+          alt=" {{ settings.core.SiteBranding.site_name }} Logo" style="width:120px;display:block;margin:auto"/>
+<h1 style="text-transform:uppercase;text-align:center;color:#85007e">
+    {{ settings.core.SiteBranding.site_name }} CMS
+</h1>
+{% endblock %}

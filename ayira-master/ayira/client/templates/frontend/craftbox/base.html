@@ -1,0 +1,6 @@
+{% extends "../base.html" %}
+{% load craftbox_tags static i18n wagtailcore_tags wagtailimages_tags widget_tweaks humanize %}
+
+{% block nav %}
+    {% render_craftbox_category page=page %}
+{% endblock nav %}

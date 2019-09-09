@@ -1,0 +1,22 @@
+{% extends "menus/main/level_1.html" %}
+{% load wagtailroutablepage_tags wagtailcore_tags %}
+
+{% block menus %}
+<nav class="s-header__nav js__scrollbar">
+  <div class="container-fluid">
+    <!-- Menu List -->
+    <ul class="list-unstyled s-header__nav-menu">
+        {% for item in craftbox_categories %}
+      <li class="s-header__nav-menu-item">
+        <a class="s-header__nav-menu-link s-header__nav-menu-link-divider 
+        {% if page.specific.post_category.first|stringformat:"s" == item.name|stringformat:"s" %} -is-active {% endif %}" 
+        href="{% routablepageurl crafthome 'post_by_category' item.name|slugify %}">
+          {{ item.name|capfirst }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <!-- End Menu List -->
+  </div>
+</nav>
+{% endblock menus %}

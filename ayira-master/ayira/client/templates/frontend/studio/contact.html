@@ -1,0 +1,48 @@
+{% extends '../base.html' %}
+
+{% load static i18n wagtailcore_tags wagtailimages_tags widget_tweaks %}
+
+{% block content %}
+<div class="g-position--relative g-bg-color--dark-light">
+        <div class="g-container--md g-padding-y-125--xs">
+            <div class="g-text-center--xs g-margin-t-50--xs g-margin-b-80--xs">
+                <h2 class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--white g-letter-spacing--2 g-margin-b-25--xs">
+                    {{ page.caption }}
+                </h2>
+                <h3 class="g-font-size-32--xs g-font-size-36--sm g-color--white">
+                    {{ page.subcaption }}
+                </h3>
+            </div>
+            <div class="row g-row-col--5 g-margin-b-80--xs">
+                {% for contact in page.contacts %}
+                    {% include_block contact %}
+                {% endfor %}
+            </div>
+            <form action="{% pageurl page %}" method="POST" class="center-block g-width-500--sm g-width-550--md">
+                    {% csrf_token %}
+                    {% for hidden_field in form.hidden_fields %}
+                        {{ hidden_field }}
+                    {% endfor %}
+                {% for visible_field in form.visible_fields %}
+                    {% if forloop.first %}
+                        <div class="g-margin-b-30--xs">
+                            {% render_field visible_field|add_class:"form-control s-form-v3__input" placeholder=visible_field.label %}
+                        </div>
+                    {% elif forloop.last %}
+                        <div class="g-margin-b-80--xs g-margin-t-125--xs">
+                            {% render_field visible_field|add_class:"form-control s-form-v3__input" placeholder=visible_field.label %}
+                        </div>
+                    {% else %}
+                        <div class="col-sm-6 g-padding-x-0--sm g-margin-b-30--xs g-margin-b-0--md">
+                            {% render_field visible_field|add_class:"form-control s-form-v3__input" placeholder=visible_field.label %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <div class="g-text-center--xs">
+                    <button type="submit" class="text-uppercase s-btn s-btn--md s-btn--primary-bg g-radius--10 g-padding-x-70--xs g-margin-b-20--xs">Submit</button>
+                </div>
+            </form>
+        </div>
+        <img class="s-mockup-v2" src="{% static 'img/mockups/pencil-01.png' %}" alt="Mockup Image">
+    </div>
+{% endblock content %}

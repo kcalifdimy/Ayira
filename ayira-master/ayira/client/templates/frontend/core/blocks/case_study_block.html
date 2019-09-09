@@ -1,0 +1,35 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<!-- Item -->
+<div class="s-portfolio__item logos motion col-sm-6">
+    <div>
+        {% image value.cover_image fill-970x647 class="img-responsive" %}
+    </div>
+    <div class="s-portfolio__caption-hover--cc">
+        <div class="g-margin-b-25--xs">
+            <h4 class="g-font-size-18--xs g-color--white g-margin-b-5--xs">
+                {{ value.title }}
+            </h4>
+            <p class="g-color--white-opacity">
+                {{ value.title }}
+            </p>
+        </div>
+        <ul class="list-inline g-ul-li-lr-5--xs g-margin-b-0--xs">
+            <li>
+                {% image value.cover_image original as cover_image %}
+                <a href="{{ cover_image.url }}" 
+                class="cbp-lightbox s-icon s-icon--sm s-icon--white-bg g-radius--circle" 
+                data-title="{{ post.title }}">
+                    <i class="ti-fullscreen"></i>
+                </a>
+            </li>
+            <li>
+                <a href="{% pageurl value.link %}" 
+                class="s-icon s-icon--sm s-icon s-icon--white-bg g-radius--circle">
+                    <i class="ti-link"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- end item -->

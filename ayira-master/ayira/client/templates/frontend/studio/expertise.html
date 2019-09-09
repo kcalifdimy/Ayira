@@ -1,0 +1,50 @@
+{% extends '../base.html' %}
+{% load static i18n wagtailcore_tags wagtailimages_tags widget_tweaks %}
+
+{% block hero_header %}
+        <!--========== PROMO BLOCK ==========-->
+    {% with hero=page.expertise_hero.first %}
+    {% image hero.cover_image original as cover %}
+    <section class="s-video-v2__bg" 
+        style="background: url('{{ cover.url }}') 50% 0 no-repeat fixed;">
+        <div class="container g-position--overlay g-text-center--xs">
+            <div class="g-padding-y-50--xs g-margin-t-100--xs g-margin-b-100--xs g-margin-b-250--md">
+                <h1 class="g-font-size-36--xs g-font-size-50--sm g-font-size-60--md g-color--white">
+                    {{ hero.caption }}
+                </h1>
+                <h2 class="g-font-size-36--xs g-font-size-50--sm g-font-size-60--md g-color--white">
+                    {{ hero.title }}
+                </h2>
+            </div>
+        </div>
+    </section>
+    <!-- Mockup -->
+    <div class="container g-margin-t-o-150--xs">
+        <div class="center-block s-mockup-v1">
+            {% image hero.message_image original class="img-responsive" %}
+        </div>
+    </div>
+    <!-- End Mockup -->
+    {% endwith %}
+    <!--========== END PROMO BLOCK ==========-->
+{% endblock hero_header %}
+
+{% block content %}
+    <div class="g-position--relative g-bg-color--primary-ltr">
+        <div class="container g-padding-y-80--xs g-padding-y-125--xsm">
+            {% for service in page.services %}
+                <div class="row g-margin-b-30--xs">
+                    {% include_block service %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Plan -->
+    <div class="g-bg-color--sky-light">
+        {% for plan in page.mvp_plans %}
+            {% include_block plan %}
+        {% endfor %}
+    </div>
+    <!-- End Plan -->
+{% endblock content %}

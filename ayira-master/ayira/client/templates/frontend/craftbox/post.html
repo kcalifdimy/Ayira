@@ -1,0 +1,75 @@
+{% extends './base.html' %}
+
+{% load static i18n wagtailcore_tags wagtailimages_tags %}
+
+{% block hero_header %}
+    {% image page.cover_image original as cover  %}
+    <div class="s-promo-block-v3 g-bg-position--center g-fullheight--sm js__parallax-window" style="background: url({{cover.url}}) 50% 0 no-repeat fixed;">
+        <div class="g-container--md g-text-center--xs g-padding-y-150--xs">
+            <div class="g-margin-b-60--xs">
+                <h1 class="g-font-size-40--xs g-font-size-50--sm g-font-size-70--md g-color--white g-letter-spacing--1 g-margin-b-30--xs">
+                    {{ page.post_category.first|lower }}| {{ page.title|truncatewords_html:2|capfirst}}
+                </h1>
+                <h2 class="g-font-size-36--xs g-font-size-40--sm g-font-size-50--md g-color--white g-letter-spacing--1 g-margin-b-30--xs">
+                    {{page.excerpt}}
+                </h2>
+                <p class="text-uppercase g-font-size-10--xs g-font-weight--700 g-color--white-opacity g-letter-spacing--2">
+                    {% for tag in page.tags.all %}
+                        <a href="#"> {{ tag|capfirst }} | </a>
+                    {% endfor %}
+                </p>
+            </div>
+            <a href="#js__scroll-to-section">
+                <span class="s-icon s-icon--md s-icon--white-brd g-radius--circle ti-angle-double-down"></span>
+            </a>
+        </div>
+    </div>
+{% endblock hero_header %}
+
+{% block content %}
+    <div class="g-container--md g-padding-y-40--xs g-padding-y-75--sm" id="js__scroll-to-section">
+
+        <div class="g-bg-color--white g-padding-x-30--xs g-padding-y-20--xs row">
+            <div class="col-sm-4">
+                <h4 class="g-font-size-18--xs g-margin-b-5--xs g-color--primary">
+                    authored by 
+                    <a href="#" class="g-color--primary" style="text-decoration:underline">
+                        {{ page.author }}
+                    </a>
+                </h4>
+                <span class="g-font-size-15--xs g-color--text">
+                    <i> published on {{ page.first_published_at }}</i>
+                </span>
+            </div>
+            <div class="col-sm-4 col-sm-push-4">
+                <div id="share-buttons">
+                    <!-- Email -->
+                    <a href="mailto:?Subject=Simple Share Buttons&amp;Body=I%20saw%20this%20and%20thought%20of%20you!%20 {{page.get_site.root_url}}">
+                        <i class="g-font-size-28--xs g-color--primary ti-email"></i>
+                    </a>
+                
+                    <!-- Facebook -->
+                    <a 
+                    href="http://www.facebook.com/sharer.php?u={{page.get_site.root_url}}" target="_blank">
+                        <i class="g-font-size-28--xs g-color--primary ti-facebook"></i>
+                    </a>
+                    
+                    <!-- LinkedIn -->
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{page.get_site.root_url}}" target="_blank">
+                        <i class="g-font-size-28--xs g-color--primary ti-linkedin"></i>
+                    </a>
+                    
+                    <!-- Twitter -->
+                    <a href="https://twitter.com/share?url={{page.get_site.root_url}}&amp;text=Simple%20Share%20Buttons&amp;hashtags=craftbox" target="_blank">
+                        <i class="g-font-size-28--xs g-color--primary ti-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <h1 class="g-font-size-40--xs g-font-size-50--sm g-font-size-70--md g-letter-spacing--1 g-margin-b-30--xs">
+            {{ page.title | capfirst }}
+        </h1>
+        {% include_block page.body %}
+    </div>
+{% endblock content %}

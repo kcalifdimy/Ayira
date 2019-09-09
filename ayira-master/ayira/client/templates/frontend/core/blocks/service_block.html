@@ -1,0 +1,9 @@
+<div class="col-sm-4">
+  {% with value.service as service %} {% include "./summary_block.html" with value=service %} {% endwith %}
+</div>
+
+<div class="col-sm-8">
+    {% for case_study in value.portfolio %}
+      {% include "./case_study_block.html" with value=case_study %} 
+    {% endfor %}
+</div>

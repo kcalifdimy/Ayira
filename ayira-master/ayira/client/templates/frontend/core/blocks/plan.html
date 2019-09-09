@@ -1,0 +1,23 @@
+{% load static i18n wagtailcore_tags wagtailimages_tags widget_tweaks %}
+
+
+<div class="container g-padding-y-80--xs g-padding-y-125--xsm">
+    <div class="g-text-center--xs g-margin-b-80--xs">
+        <p class="text-uppercase g-font-size-14--xs g-font-weight--700 g-color--primary g-letter-spacing--2 g-margin-b-25--xs">
+            {{ value.title }}
+        </p>
+        <h2 class="g-font-size-32--xs g-font-size-36--md">
+            {{ value.caption }}
+        </h2>
+    </div>
+
+    <div class="row g-row-col--5">
+        <!-- Plan -->
+            {% for package in value.plan %}
+                <div class="col-md-4 g-margin-b-10--xs g-margin-b-0--lg">
+                    {% include './package.html' with value=package %}
+                </div>
+            {% endfor %}
+        <!-- End Plan -->
+    </div>
+</div>

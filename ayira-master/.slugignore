@@ -1,0 +1,6 @@
+.envs/
+.vscode/
+compose/
+docs/
+utility/
+ayira/client/static/scss

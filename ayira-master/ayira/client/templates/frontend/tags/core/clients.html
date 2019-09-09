@@ -1,0 +1,22 @@
+{% load wagtailimages_tags %}
+<div class="section__divider">
+		<div class="folded-divider">
+			<div class="g-bg-color--sky-light">
+					<div class="g-container--md g-padding-y-80--xs g-padding-y-125--sm">
+						<!-- Swiper Clients -->
+						<div class="s-swiper js__swiper-clients">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+                                    {% for client in clients %}
+									<div class="wow fadeIn" data-wow-duration=".3" data-wow-delay=".1s">
+										{% image client.logo original class="s-clients-v1" %}
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- End Swiper Clients -->
+					</div>
+				</div>
+		</div>
+	</div>
+{% endfor %}
