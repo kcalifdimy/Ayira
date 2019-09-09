@@ -33,7 +33,7 @@ if settings.DEBUG:
             "403/",
             default_views.permission_denied,
             kwargs={"exception": Exception("Permission Denied")},
-        ),
+        ),U
         path(
             "404/",
             default_views.page_not_found,
